@@ -1,11 +1,16 @@
 package com.gdnse.blog;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.jsoup.nodes.Document;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
@@ -23,7 +28,7 @@ public class ServerApplication {
         SpringApplication.run(ServerApplication.class, args);
 
         try (Connection conn = DriverManager.getConnection(DB_URL, USER, PASS);
-             Statement stmt = conn.createStatement();
+             Statement stmt = conn.createStatement()
         ) {
             stmt.executeUpdate("TRUNCATE USD");
             stmt.executeUpdate("TRUNCATE EUR");
@@ -85,4 +90,5 @@ public class ServerApplication {
             e.printStackTrace();
         }
     }
+
 }
